@@ -4,15 +4,21 @@ class Task:
 
     def __init__(self, name, description=""):
         self.id = Task.id_counter
-        Task.id_counter += 1
         self.name = name
         self.description = description
 
         TaskManager.add_task(self)
+        Task.id_counter += 1
         
 
 class TaskManager:
     tasks = {}
+
+    '''
+    use @classmethod decorator when you modify class state and want to be able to subclass your class. 
+    First argument is a class state and it works like using class name.
+    @staticmethod should contain simple logic that fit to the class but doesn't change its state
+    '''
 
     @classmethod
     def add_task(cls, task: Task):
